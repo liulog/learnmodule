@@ -1,0 +1,9 @@
+# --- 内核模块编译生成文件 ---
+*.ko
+*.mod
+*.mod.c
+*.mod.o
+*.o
+*.order
+Module.symvers
+modules.order

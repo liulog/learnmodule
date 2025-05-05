@@ -1,0 +1,1 @@
+savedcmd_/home/jingyu/workspace/learnmodule/helloworld/Module.symvers :=  scripts/mod/modpost -M        -o /home/jingyu/workspace/learnmodule/helloworld/Module.symvers -T /home/jingyu/workspace/learnmodule/helloworld/modules.order -i Module.symvers -e 
