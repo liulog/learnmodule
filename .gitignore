@@ -7,3 +7,6 @@
 *.order
 Module.symvers
 modules.order
+
+# --- busybox 根文件系统 ---
+busybox-1.33.1

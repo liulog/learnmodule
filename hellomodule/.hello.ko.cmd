@@ -1,1 +1,0 @@
-savedcmd_/home/jingyu/workspace/learnmodule/helloworld/hello.ko := riscv64-unknown-linux-gnu-ld -r -melf64lriscv -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T scripts/module.lds -o /home/jingyu/workspace/learnmodule/helloworld/hello.ko /home/jingyu/workspace/learnmodule/helloworld/hello.o /home/jingyu/workspace/learnmodule/helloworld/hello.mod.o

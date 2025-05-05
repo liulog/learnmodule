@@ -1,0 +1,1 @@
+savedcmd_/home/jingyu/workspace/learnmodule/helloworld/modules.order := {   echo /home/jingyu/workspace/learnmodule/helloworld/helloworld.o; :; } > /home/jingyu/workspace/learnmodule/helloworld/modules.order

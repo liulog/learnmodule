@@ -1,0 +1,1 @@
+savedcmd_/home/jingyu/workspace/learnmodule/hellodevice/modules.order := {   echo /home/jingyu/workspace/learnmodule/hellodevice/hellodevice.o; :; } > /home/jingyu/workspace/learnmodule/hellodevice/modules.order
