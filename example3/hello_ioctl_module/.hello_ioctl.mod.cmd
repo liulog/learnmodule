@@ -1,1 +1,0 @@
-savedcmd_/home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/hello_ioctl.mod := printf '%s\n'   hello_ioctl.o | awk '!x[$$0]++ { print("/home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/"$$0) }' > /home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/hello_ioctl.mod

@@ -1,1 +1,0 @@
-savedcmd_/home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/modules.order := {   echo /home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/hello_ioctl.o; :; } > /home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/modules.order
