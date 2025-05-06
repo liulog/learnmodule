@@ -8,3 +8,6 @@ helloworld module -- only support insmod/rmmod.
 hellodevice module -- simply communicate with /dev/lkm_example.
 > This example is from https://blog.sourcerer.io/writing-a-simple-linux-kernel-module-d9dc3762c234.
 
+### example3:
+helloioctl module -- simply demonstrate usage of ioctl.
+
