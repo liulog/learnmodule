@@ -1,1 +1,0 @@
-savedcmd_/home/jingyu/workspace/learnmodule/hellodevice/hellodevice.mod := printf '%s\n'   hellodevice.o | awk '!x[$$0]++ { print("/home/jingyu/workspace/learnmodule/hellodevice/"$$0) }' > /home/jingyu/workspace/learnmodule/hellodevice/hellodevice.mod

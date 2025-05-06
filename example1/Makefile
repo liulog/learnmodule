@@ -1,5 +1,5 @@
 
-obj-m += helloworld.o   
+obj-m += hello_world.o   
 ARCH ?= riscv
 CROSS_COMPILE = riscv64-unknown-linux-gnu-
 KERNEL_PATH ?= ~/riscv-linux-devel

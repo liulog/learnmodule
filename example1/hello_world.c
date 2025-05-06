@@ -18,5 +18,6 @@ module_init(hello_init);
 module_exit(hello_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("liulog");
+MODULE_AUTHOR("Qwen3");
+MODULE_VERSION("1.0");
 MODULE_DESCRIPTION("A Hello World Kernel Module");

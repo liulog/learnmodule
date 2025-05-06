@@ -1,11 +1,8 @@
-savedcmd_/home/jingyu/workspace/learnmodule/hellodevice/hellodevice.mod.o := riscv64-unknown-linux-gnu-gcc -Wp,-MMD,/home/jingyu/workspace/learnmodule/hellodevice/.hellodevice.mod.o.d -nostdinc -I./arch/riscv/include -I./arch/riscv/include/generated -I./include -I./arch/riscv/include/uapi -I./arch/riscv/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/compiler-version.h -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -fmacro-prefix-map=./= -std=gnu11 -fshort-wchar -funsigned-char -fno-common -fno-PIE -fno-strict-aliasing -mabi=lp64 -march=rv64imac_zicsr_zifencei_zihintpause -mno-save-restore -DCONFIG_PAGE_OFFSET=0xff60000000000000 -mcmodel=medany -fno-asynchronous-unwind-tables -fno-unwind-tables -mno-riscv-attribute -Wa,-mno-arch-attr -mstrict-align -fno-delete-null-pointer-checks -O2 -fno-allow-store-data-races -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -ftrivial-auto-var-init=zero -fno-stack-clash-protection -fno-strict-overflow -fno-stack-check -fconserve-stack -Wall -Wundef -Werror=implicit-function-declaration -Werror=implicit-int -Werror=return-type -Werror=strict-prototypes -Wno-format-security -Wno-trigraphs -Wno-frame-address -Wno-address-of-packed-member -Wmissing-declarations -Wmissing-prototypes -Wframe-larger-than=2048 -Wno-main -Wno-dangling-pointer -Wvla -Wno-pointer-sign -Wcast-function-type -Wno-stringop-overflow -Wno-array-bounds -Wno-alloc-size-larger-than -Wimplicit-fallthrough=5 -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -Wenum-conversion -Wextra -Wunused -Wno-unused-but-set-variable -Wno-unused-const-variable -Wno-packed-not-aligned -Wno-format-overflow -Wno-format-truncation -Wno-stringop-truncation -Wno-override-init -Wno-missing-field-initializers -Wno-type-limits -Wno-shift-negative-value -Wno-maybe-uninitialized -Wno-sign-compare -Wno-unused-parameter -mstack-protector-guard=tls -mstack-protector-guard-reg=tp -mstack-protector-guard-offset=1200 -DMODULE -mno-relax -DKBUILD_BASENAME='"hellodevice.mod"' -DKBUILD_MODNAME='"hellodevice"' -D__KBUILD_MODNAME=kmod_hellodevice -c -o /home/jingyu/workspace/learnmodule/hellodevice/hellodevice.mod.o /home/jingyu/workspace/learnmodule/hellodevice/hellodevice.mod.c
+savedcmd_/home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/hello_ioctl.o := riscv64-unknown-linux-gnu-gcc -Wp,-MMD,/home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/.hello_ioctl.o.d -nostdinc -I./arch/riscv/include -I./arch/riscv/include/generated  -I./include -I./arch/riscv/include/uapi -I./arch/riscv/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/compiler-version.h -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -fmacro-prefix-map=./= -std=gnu11 -fshort-wchar -funsigned-char -fno-common -fno-PIE -fno-strict-aliasing -mabi=lp64 -march=rv64imac_zicsr_zifencei_zihintpause -mno-save-restore -DCONFIG_PAGE_OFFSET=0xff60000000000000 -mcmodel=medany -fno-asynchronous-unwind-tables -fno-unwind-tables -mno-riscv-attribute -Wa,-mno-arch-attr -mstrict-align -fno-delete-null-pointer-checks -O2 -fno-allow-store-data-races -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -ftrivial-auto-var-init=zero -fno-stack-clash-protection -fno-strict-overflow -fno-stack-check -fconserve-stack -Wall -Wundef -Werror=implicit-function-declaration -Werror=implicit-int -Werror=return-type -Werror=strict-prototypes -Wno-format-security -Wno-trigraphs -Wno-frame-address -Wno-address-of-packed-member -Wmissing-declarations -Wmissing-prototypes -Wframe-larger-than=2048 -Wno-main -Wno-dangling-pointer -Wvla -Wno-pointer-sign -Wcast-function-type -Wno-stringop-overflow -Wno-array-bounds -Wno-alloc-size-larger-than -Wimplicit-fallthrough=5 -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -Wenum-conversion -Wextra -Wunused -Wno-unused-but-set-variable -Wno-unused-const-variable -Wno-packed-not-aligned -Wno-format-overflow -Wno-format-truncation -Wno-stringop-truncation -Wno-override-init -Wno-missing-field-initializers -Wno-type-limits -Wno-shift-negative-value -Wno-maybe-uninitialized -Wno-sign-compare -Wno-unused-parameter -mstack-protector-guard=tls -mstack-protector-guard-reg=tp -mstack-protector-guard-offset=1200  -DMODULE -mno-relax  -DKBUILD_BASENAME='"hello_ioctl"' -DKBUILD_MODNAME='"hello_ioctl"' -D__KBUILD_MODNAME=kmod_hello_ioctl -c -o /home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/hello_ioctl.o /home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/hello_ioctl.c  
 
-source_/home/jingyu/workspace/learnmodule/hellodevice/hellodevice.mod.o := /home/jingyu/workspace/learnmodule/hellodevice/hellodevice.mod.c
+source_/home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/hello_ioctl.o := /home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/hello_ioctl.c
 
-deps_/home/jingyu/workspace/learnmodule/hellodevice/hellodevice.mod.o := \
-    $(wildcard include/config/UNWINDER_ORC) \
-    $(wildcard include/config/MODULE_UNLOAD) \
-    $(wildcard include/config/MITIGATION_RETPOLINE) \
+deps_/home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/hello_ioctl.o := \
   include/linux/compiler-version.h \
     $(wildcard include/config/CC_VERSION_TEXT) \
   include/linux/kconfig.h \
@@ -26,6 +23,7 @@ deps_/home/jingyu/workspace/learnmodule/hellodevice/hellodevice.mod.o := \
     $(wildcard include/config/CC_HAS_ASM_INLINE) \
   include/linux/compiler_attributes.h \
   include/linux/compiler-gcc.h \
+    $(wildcard include/config/MITIGATION_RETPOLINE) \
     $(wildcard include/config/GCC_ASM_GOTO_OUTPUT_WORKAROUND) \
     $(wildcard include/config/ARCH_USE_BUILTIN_BSWAP) \
     $(wildcard include/config/SHADOW_CALL_STACK) \
@@ -53,6 +51,7 @@ deps_/home/jingyu/workspace/learnmodule/hellodevice/hellodevice.mod.o := \
     $(wildcard include/config/HAVE_STATIC_CALL_INLINE) \
     $(wildcard include/config/KUNIT) \
     $(wildcard include/config/PRINTK_INDEX) \
+    $(wildcard include/config/MODULE_UNLOAD) \
     $(wildcard include/config/CONSTRUCTORS) \
     $(wildcard include/config/FUNCTION_ERROR_INJECTION) \
     $(wildcard include/config/DYNAMIC_DEBUG_CORE) \
@@ -925,18 +924,7 @@ deps_/home/jingyu/workspace/learnmodule/hellodevice/hellodevice.mod.o := \
     $(wildcard include/config/HAVE_MOD_ARCH_SPECIFIC) \
     $(wildcard include/config/MODULES_USE_ELF_REL) \
     $(wildcard include/config/MODULES_USE_ELF_RELA) \
-  include/linux/build-salt.h \
-    $(wildcard include/config/BUILD_SALT) \
-  include/linux/elfnote.h \
-  include/linux/elfnote-lto.h \
-    $(wildcard include/config/LTO) \
-  include/linux/export-internal.h \
-    $(wildcard include/config/PARISC) \
-  include/linux/vermagic.h \
-    $(wildcard include/config/PREEMPT_BUILD) \
-  include/generated/utsrelease.h \
-  arch/riscv/include/asm/vermagic.h \
 
-/home/jingyu/workspace/learnmodule/hellodevice/hellodevice.mod.o: $(deps_/home/jingyu/workspace/learnmodule/hellodevice/hellodevice.mod.o)
+/home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/hello_ioctl.o: $(deps_/home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/hello_ioctl.o)
 
-$(deps_/home/jingyu/workspace/learnmodule/hellodevice/hellodevice.mod.o):
+$(deps_/home/jingyu/workspace/learnmodule/example3/hello_ioctl_module/hello_ioctl.o):

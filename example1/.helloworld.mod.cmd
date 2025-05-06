@@ -1,1 +1,0 @@
-savedcmd_/home/jingyu/workspace/learnmodule/helloworld/helloworld.mod := printf '%s\n'   helloworld.o | awk '!x[$$0]++ { print("/home/jingyu/workspace/learnmodule/helloworld/"$$0) }' > /home/jingyu/workspace/learnmodule/helloworld/helloworld.mod

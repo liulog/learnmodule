@@ -1,5 +1,5 @@
 
-obj-m += hello_device.o   
+obj-m += hello_ioctl.o   
 ARCH ?= riscv
 CROSS_COMPILE = riscv64-unknown-linux-gnu-
 KERNEL_PATH ?= ~/riscv-linux-devel
