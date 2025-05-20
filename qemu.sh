@@ -1,6 +1,13 @@
 
 export ARCH=riscv&&export CROSS_COMPILE=riscv64-unknown-linux-gnu-
 
+# 0.
+echo "Copy hpm_call and hpm_driver"
+cp riscv_hpm/hpm_user/hpm_call ./busybox-1.33.1/_install 
+cp riscv_hpm/hpm_module/hpm_driver.ko ./busybox-1.33.1/_install
+cp riscv_hpm/load.sh ./busybox-1.33.1/_install
+cp riscv_hpm/topdown.sh ./busybox-1.33.1/_install
+
 # 1.
 echo "Build the busybox rootfs"
 cd ./busybox-1.33.1/_install
@@ -14,6 +21,7 @@ make -j8
 # 3.
 echo "Build opensbi"
 cd ~/workspace/opensbi-1.6
+make distclean
 make PLATFORM=generic FW_PAYLOAD_PATH=/home/jingyu/riscv-linux-devel/arch/riscv/boot/Image FW_FDT_PATH=./kmh-v2-1core.dtb -j
 
 # 4.
