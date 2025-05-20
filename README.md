@@ -11,3 +11,8 @@ hellodevice module -- simply communicate with /dev/lkm_example.
 ### example3:
 helloioctl module -- simply demonstrate usage of ioctl.
 
+### riscv_hpm:
+This is a simple example which uses riscv's hpmevent and hpmcounter.
+And its structure is just like below.
+
+![riscv_hpm](./assets/hpm_mod.png)
