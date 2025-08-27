@@ -34,7 +34,7 @@ typedef struct {
     const char* level1;
     const char* level2;
     const char* level3;
-    float value;
+    double value;
 } TopdownMetric;
 
 // Topdown metric table.
@@ -297,7 +297,7 @@ int main(int argc, char *argv[])
         struct hpm_event_args hpm_configs[32];
         memset(hpm_configs, 0, sizeof(hpm_configs));
         // Frontend
-        hpm_configs[3]  = (struct hpm_event_args){3,  make_hpmevent_single(0, Front_Bubble)};
+        hpm_configs[3]  = (struct hpm_event_args){3,  make_hpmevent_single(0, IF_FETCH_BUBBLE)};
         hpm_configs[4]  = (struct hpm_event_args){4,  make_hpmevent_single(0, IF_FETCH_BUBBLE_EQ_MAX)};
         // Backend
         hpm_configs[11]  = (struct hpm_event_args){11,  make_hpmevent_single(0, INST_RETIRED)};
@@ -320,29 +320,35 @@ int main(int argc, char *argv[])
     {
         // 1. calculate the topdown metric.
         // INST_RETIRED / (IssueBW * CPU_CYCLES)
-        table[0].value = (float)csr_read(hpmcounter11) / (float)(IssueBW * csr_read(cycle));
+        table[0].value = (double)csr_read(hpmcounter11) / (double)(IssueBW * csr_read(cycle));
         // IF_FETCH_BUBBLE / (IssueBW * CPU_CYCLES)
-        table[1].value = (float)csr_read(hpmcounter3) / (float)(IssueBW * csr_read(cycle));
+        table[1].value = (double)csr_read(hpmcounter3) / (double)(IssueBW * csr_read(cycle));
         // IF_FETCH_BUBBLE_EQ_MAX / CPU_CYCLES
-        table[2].value = (float)csr_read(hpmcounter4) / (float)csr_read(cycle);
+        table[2].value = (double)csr_read(hpmcounter4) / (double)csr_read(cycle);
         // FrontEnd Bound - Fetch Latency Bound
         table[3].value = table[1].value - table[2].value;
         // (INST_SPEC - INST_RETIRED + RECOVERY_BUBBLE) / (IssueBW * CPU_CYCLES)
-        table[4].value = (float)(csr_read(hpmcounter12)-csr_read(hpmcounter11)+csr_read(hpmcounter13)) / (float)(IssueBW * csr_read(cycle));
+        table[4].value = (double)(csr_read(hpmcounter12)-csr_read(hpmcounter11)+csr_read(hpmcounter13)) / (double)(IssueBW * csr_read(cycle));
         // Bad Speculation * BR_MIS_PRED / TOTAL_FLUSH
-        table[5].value = table[4].value * (float)csr_read(hpmcounter14) / (float)csr_read(hpmcounter15);
+        table[5].value = table[4].value * (double)csr_read(hpmcounter14) / (double)csr_read(hpmcounter15);
         // Bad Speculation - Branch Misspredict
         table[6].value = table[4].value - table[5].value;
         // 1 - (FrontEnd Bound + Bad Speculation + Retiring)
         table[7].value = 1 - table[0].value - table[1].value - table[4].value;
         // (EXEC_STALL_CYCLE - MEMSTALL_ANYLOAD - MEMSTALL_STORE) / CPU_CYCLE 
-        table[8].value = (float)(csr_read(hpmcounter16)-csr_read(hpmcounter19)-csr_read(hpmcounter17)) / (float)csr_read(cycle);
+        table[8].value = (double)(csr_read(hpmcounter16)-csr_read(hpmcounter19)-csr_read(hpmcounter17)) / (double)csr_read(cycle);
         // (MEMSTALL_ANYLOAD + MEMSTALL_STORE) / CPU_CYCLES 
-        table[9].value = (float)(csr_read(hpmcounter19)+csr_read(hpmcounter17)) / (float)csr_read(cycle);
+        table[9].value = (double)(csr_read(hpmcounter19)+csr_read(hpmcounter17)) / (double)csr_read(cycle);
+
+        unsigned long long cycle = csr_read(cycle);
+        unsigned long long instret = csr_read(instret);
+        printf("cycle = 0x%llx\n", cycle);
+        printf("instret = 0x%llx\n", instret);
+        printf("IPC = %.2f\n", (double)instret / (double)cycle);
 
         // 2. print the topdown metric table.
         printf("+------------------+------------------------+------------------+--------+\n");
-        printf("| %-16s | %-22s | %-16s | %-6s |\n", "Level 1", "Level 2", "Level 3", "结果");
+        printf("| %-16s | %-22s | %-16s | %-6s |\n", "Level 1", "Level 2", "Level 3", "Result");
         printf("+------------------+------------------------+------------------+--------+\n");
         for (int i = 0; i < 10; ++i) {
             printf("| %-16s | %-22s | %-16s | %6.2f |\n",
@@ -368,6 +374,14 @@ int main(int argc, char *argv[])
         hpm_configs[14]  = (struct hpm_event_args){14,  make_hpmevent_single(0, MEMSTALL_L2MISS)};
         hpm_configs[15]  = (struct hpm_event_args){15,  make_hpmevent_single(0, MEMSTALL_L3MISS)};
         
+        // TLB 与 Cache 相关的事件
+        hpm_configs[19]  = (struct hpm_event_args){19,  make_hpmevent_quad(0, OPTYPE_ADD, OPTYPE_ADD, OPTYPE_ADD, 7, 14, 21, noEvent)};
+        hpm_configs[20]  = (struct hpm_event_args){20,  make_hpmevent_quad(0, OPTYPE_ADD, OPTYPE_ADD, OPTYPE_ADD, 6, 13, 20, noEvent)};
+        hpm_configs[21]  = (struct hpm_event_args){21,  make_hpmevent_quad(0, OPTYPE_ADD, OPTYPE_ADD, OPTYPE_ADD, 5, 12, 19, noEvent)};
+        hpm_configs[22]  = (struct hpm_event_args){22,  make_hpmevent_quad(0, OPTYPE_ADD, OPTYPE_ADD, OPTYPE_ADD, 4, 11, 18, noEvent)};
+        hpm_configs[23]  = (struct hpm_event_args){23,  make_hpmevent_single(0, 115)};
+        hpm_configs[24]  = (struct hpm_event_args){24,  make_hpmevent_single(0, 110)};
+
         for (int i = 3; i < 32; ++i) {
             if (hpm_configs[i].event_value != 0) {
                 ioctl(fd, IOCTL_CONFIGURE_EVENT, &hpm_configs[i]);
@@ -377,19 +391,19 @@ int main(int argc, char *argv[])
     else if (strcmp(cmd, "topdown-metric-l3") == 0){
         // 1. calculate the topdown metric.
         // (MEMSTALL_ANYLOAD - MEMSTALL_L1MISS) / CPU_CYCLES
-        table[10].value = (float)(csr_read(hpmcounter11) - csr_read(hpmcounter13))/ (float)csr_read(cycle);
+        table[10].value = (double)(csr_read(hpmcounter11) - csr_read(hpmcounter13))/ (double)csr_read(cycle);
         // (MEMSTALL_L1MISS - MEMSTALL_L2MISS) / CPU_CYCLES
-        table[11].value = (float)(csr_read(hpmcounter13) - csr_read(hpmcounter14)) / (float)csr_read(cycle);
+        table[11].value = (double)(csr_read(hpmcounter13) - csr_read(hpmcounter14)) / (double)csr_read(cycle);
         // (MEMSTALL_L2MISS - MEMSTALL_L3MISS) / CPU_CYCLES
-        table[12].value = (float)(csr_read(hpmcounter14) - csr_read(hpmcounter15)) / (float)csr_read(cycle);
+        table[12].value = (double)(csr_read(hpmcounter14) - csr_read(hpmcounter15)) / (double)csr_read(cycle);
         // MEMSTALL_L3MISS / CPU_CYCLES
-        table[13].value = (float)csr_read(hpmcounter15) / (float)csr_read(cycle);
+        table[13].value = (double)csr_read(hpmcounter15) / (double)csr_read(cycle);
         // MEMSTALL_STORE / CPU_CYCLES 
-        table[14].value = (float)csr_read(hpmcounter12) / (float)csr_read(cycle);
+        table[14].value = (double)csr_read(hpmcounter12) / (double)csr_read(cycle);
 
         // 2. print the topdown metric table.
         printf("+------------------+------------------------+------------------+--------+\n");
-        printf("| %-16s | %-22s | %-16s | %-6s |\n", "Level 1", "Level 2", "Level 3", "结果");
+        printf("| %-16s | %-22s | %-16s | %-6s |\n", "Level 1", "Level 2", "Level 3", "Result");
         printf("+------------------+------------------------+------------------+--------+\n");
         for (int i = 10; i < ROWS; ++i) {
             printf("| %-16s | %-22s | %-16s | %6.2f |\n",
@@ -399,6 +413,28 @@ int main(int argc, char *argv[])
                 table[i].value);
         }
         printf("+------------------+------------------------+------------------+--------+\n");
+
+        printf("MEMSTALL_ANYLOAD = 0x%llx\n", csr_read(hpmcounter11));
+        printf("MEMSTALL_STORE = 0x%llx\n", csr_read(hpmcounter12));
+        printf("MEMSTALL_L1MISS = 0x%llx\n", csr_read(hpmcounter13));
+        printf("MEMSTALL_L2MISS = 0x%llx\n", csr_read(hpmcounter14));
+        printf("MEMSTALL_L3MISS = 0x%llx\n", csr_read(hpmcounter15));
+
+        unsigned long long dcache_miss = csr_read(hpmcounter19);
+        unsigned long long dcache_access = csr_read(hpmcounter20);
+        unsigned long long dtlb_miss = csr_read(hpmcounter21);
+        unsigned long long dtlb_access = csr_read(hpmcounter22);
+        unsigned long long l2tlb_miss = csr_read(hpmcounter23);
+        unsigned long long l2tlb_access = csr_read(hpmcounter24); 
+        printf("dcache_miss = 0x%llx\n", dcache_miss);
+        printf("dcache_access = 0x%llx\n", dcache_access);
+        printf("dtlb_miss = 0x%llx\n", dtlb_miss);
+        printf("dtlb_access = 0x%llx\n", dtlb_access);
+        printf("l2tlb_miss = 0x%llx\n", l2tlb_miss);
+        printf("l2tlb_access = 0x%llx\n", l2tlb_access);
+        printf("dcache_miss_rate = %.2f\n", (double)dcache_miss / (double)dcache_access);
+        printf("dtlb_miss_rate = %.2f\n", (double)dtlb_miss / (double)dtlb_access);
+        printf("l2tlb_miss_rate = %.2f\n", (double)l2tlb_miss / (double)l2tlb_access);
     }
     else
     {

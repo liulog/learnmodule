@@ -12,6 +12,7 @@
         "stdio.h": "c",
         "riscv_asm.h": "c",
         "stdint.h": "c",
-        "event.h": "c"
+        "event.h": "c",
+        "compare": "c"
     }
 }

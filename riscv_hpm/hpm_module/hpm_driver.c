@@ -78,10 +78,10 @@ static long device_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
             if (copy_from_user(&value, argp, sizeof(value))) {
                 return -EFAULT;
             }
-            printk(KERN_INFO "ENABLE_COUNTERS: 0x%x\n", value);
-            printk(KERN_INFO "old scounteren: 0x%x\n", read_scounteren());
+            // printk(KERN_INFO "ENABLE_COUNTERS: 0x%x\n", value);
+            // printk(KERN_INFO "old scounteren: 0x%x\n", read_scounteren());
             write_scounteren(value);    // Write into scounteren reg
-            printk(KERN_INFO "new scounteren: 0x%x\n", read_scounteren());
+            // printk(KERN_INFO "new scounteren: 0x%x\n", read_scounteren());
             struct sbiret sbi_ret = sbi_ecall(sbi_vendor_eid, 0x0, value, 0, 0, 0, 0, 0);
             if (sbi_ret.error != 0) {
                 printk(KERN_WARNING "SBI call failed with error %ld\n", sbi_ret.error);
@@ -93,7 +93,7 @@ static long device_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
             if (copy_from_user(&value, argp, sizeof(value))) {
                 return -EFAULT;
             }
-            printk(KERN_INFO "INHIBIT_COUNTERS: 0x%x\n", value);
+            // printk(KERN_INFO "INHIBIT_COUNTERS: 0x%x\n", value);
             struct sbiret sbi_ret = sbi_ecall(sbi_vendor_eid, 0x1, value, 0, 0, 0, 0, 0);
             if (sbi_ret.error != 0) {
                 printk(KERN_WARNING "SBI call failed with error %ld\n", sbi_ret.error);
@@ -105,7 +105,7 @@ static long device_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
             if (copy_from_user(&args, argp, sizeof(args))) {
                 return -EFAULT;
             }
-            printk(KERN_INFO "CONFIGURE_EVENT: Index %llu, Value 0x%llx\n", args.idx, args.event_value);
+            // printk(KERN_INFO "CONFIGURE_EVENT: Index %llu, Value 0x%llx\n", args.idx, args.event_value);
             struct sbiret sbi_ret = sbi_ecall(sbi_vendor_eid, 0x2, args.idx, args.event_value, 0, 0, 0, 0);
             if (sbi_ret.error != 0) {
                 printk(KERN_WARNING "SBI call failed with error %ld\n", sbi_ret.error);
@@ -117,7 +117,7 @@ static long device_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
             if (copy_from_user(&args, argp, sizeof(args))) {
                 return -EFAULT;
             }
-            printk(KERN_INFO "SET_COUNTER: Index %llu, Value 0x%llx\n", args.idx, args.count_value);
+            // printk(KERN_INFO "SET_COUNTER: Index %llu, Value 0x%llx\n", args.idx, args.count_value);
             struct sbiret sbi_ret = sbi_ecall(sbi_vendor_eid, 0x3, args.idx, args.count_value, 0, 0, 0, 0);
             if (sbi_ret.error != 0) {
                 printk(KERN_WARNING "SBI call failed with error %ld\n", sbi_ret.error);
